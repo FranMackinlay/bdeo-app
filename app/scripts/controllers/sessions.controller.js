@@ -8,9 +8,12 @@
  * Controller of the bdeoApp
  */
 angular.module('bdeoApp')
-  .controller('SessionsCtrl', ['$scope', '$rootScope', '$location', 'SessionsSrv', 'UsersSrv', function (s, r, $location, SessionsSrv, UsersSrv) {
+  .controller('SessionsCtrl', ['$scope', '$rootScope', '$timeout', '$location', 'SessionsSrv', 'UsersSrv', function (s, r, $t, $location, SessionsSrv, UsersSrv) {
+    // ============= DATA ============= //
     const vm = this;
     let userInfo;
+
+    // ============= METHODS ============= //
 
     const getUser = async () => {
       const { data: user } = await UsersSrv.getUserById(userInfo)
@@ -20,33 +23,42 @@ angular.module('bdeoApp')
     const getSessions = async () => {
       const { data: sessions } = await SessionsSrv.getSessions({ user: userInfo.userid, token: userInfo.token });
       s.sessions = sessions;
-    }
-
-    s.getSessionList = e => {
-      getSessions();
+      $t(() => r.$digest());
     }
 
     s.addSession = async e => {
       e?.preventDefault();
       if (!s.newSession?.maxNumOfSessions) return alert('Please enter a valid Max Sessions number!');
-      debugger;
-      const { data } = await SessionsSrv.upsertSession({ userid: s.user.id, token: userInfo.token, maxNumOfSessions: parseInt(s.newSession.maxNumOfSessions) })
+
+      const { data } = await SessionsSrv.createSession({ userid: s.user.id, token: userInfo.token, maxNumOfSessions: parseInt(s.newSession.maxNumOfSessions) })
 
       if (data.id) alert('Session created successfully!');
       s.newSession.maxNumOfSessions = null;
-      r.$digest();
+      getSessions();
     };
 
+    s.goToSessionDetail = (e, session) => {
+      e?.preventDefault();
+      $location.path(`/session/detail/${session.id}`);
+    }
+
+    s.deleteSession = async (e, session) => {
+      e?.preventDefault();
+
+      const { data } = await SessionsSrv.deleteSession({ id: session.id, token: userInfo.token });
+      s.sessions = data;
+      if (data) alert('Session deleted!');
+      $t(() => r.$digest());
+    }
+
+    // ============= RUNTIME ============= //
 
     (() => {
       const localUserInfo = JSON.parse(localStorage.getItem('userInfo'));
       if (!localUserInfo) $location.path('/login');
-
-      userInfo = localUserInfo
+      userInfo = localUserInfo;
 
       getUser();
       getSessions();
-    })()
-
-
+    })();
   }]);
