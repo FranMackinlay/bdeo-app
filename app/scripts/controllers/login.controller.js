@@ -13,9 +13,10 @@ angular.module('bdeoApp')
   .controller('LoginCtrl', ['$scope', '$rootScope', 'UsersSrv', '$location', function (s, r, UsersSrv, $location) {
     const vm = this;
 
-    vm.$onInit = () => {
-
-    }
+    (() => {
+      const localUserInfo = JSON.parse(localStorage.getItem('userInfo'));
+      if (localUserInfo) $location.path('/sessions');
+    })()
 
     s.onSubmit = async e => {
       e?.preventDefault();
