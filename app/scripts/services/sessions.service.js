@@ -31,7 +31,7 @@ angular
             Authorization: `Bearer ${params.token}`
           }
         }
-        return $http(req);
+        return $http(req, { params });
       },
     };
   }]);
