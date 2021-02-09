@@ -1,12 +1,19 @@
 angular
   .module('bdeoApp')
-  .service('SessionsSrv', ['$http', 'PATHS', function ($http, PATHS) {
+  .factory('SessionsSrv', ['$http', function ($http) {
     return {
       getSessions(params) {
-        return $http.get(`${PATHS.USERS}/session`, { params });
+        const req = {
+          method: 'GET',
+          url: 'http://localhost:3000/api/v1/session',
+          headers: {
+            Authorization: `Bearer ${params.token}`
+          }
+        }
+        return $http(req, { params });
       },
       getSessionById(params) {
-        return $http.get(`${PATHS.USERS}/session/${params.userId}`, {
+        return $http.get(`http://localhost:3000/api/v1/session/${params.userId}`, {
           params
         });
       },
