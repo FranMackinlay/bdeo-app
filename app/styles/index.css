@@ -29,7 +29,7 @@ body {
 }
 
 .nav-link {
-  flex-basis: 33%;
+  padding-left: .61em !important;
 }
 
 
