@@ -20,5 +20,9 @@ h1, h2, h3, div, span, li, td, th, a {
   padding-left: .61em !important;
 }
 
+input:disabled {
+  background-color: darkgray !important;
+}
+
 
 

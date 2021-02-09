@@ -2,16 +2,58 @@
 
 /**
  * @ngdoc function
- * @name bdeoApp.controller:SessionDetail
+ * @name bdeoApp.controller:SessionDetailCtrl
  * @description
- * # SessionDetail
+ * # SessionDetailCtrl
  * Controller of the bdeoApp
  */
 angular.module('bdeoApp')
-  .controller('SessionDetail', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+  .controller('SessionDetailCtrl', ['$scope', '$rootScope', '$location', 'SessionsSrv', '$routeParams', '$timeout', function (s, r, $location, SessionsSrv, $routeParams, $t) {
+    // ============= DATA ============= //
+    const vm = this;
+    let userInfo;
+
+    // ============= METHODS ============= //
+
+    s.goBack = (e) => {
+      e?.preventDefault();
+      window.history.back();
+    }
+
+    const getSessionDetail = async () => {
+      const { data: session } = await SessionsSrv.getSessionById({ id: $routeParams.id, token: userInfo.token });
+      s.session = session;
+      const date = new Date(s.session.createdAt);
+      s.session.createdAt = date.toString().substr(4, 11).replace(/\s/g, '/');
+      vm.newSession = s.session;
+      $t(() => r.$digest());
+    }
+
+    s.upsertSession = async e => {
+      e?.preventDefault();
+
+      const { data } = await SessionsSrv.upsertSession({ userid: userInfo.id, token: userInfo.token, session: vm.newSession })
+
+      if (data.id) alert('Session created successfully!');
+      s.newSession.maxNumOfSessions = null;
+      getSessions();
+    };
+
+    s.deleteSession = async (e) => {
+      e?.preventDefault();
+
+      const { data } = await SessionsSrv.deleteSession({ id: s.session.id, token: userInfo.token });
+      if (data) alert('Session deleted!');
+      s.goBack(null);
+    }
+
+    // ============= RUNTIME ============= //
+
+    (() => {
+      const localUserInfo = JSON.parse(localStorage.getItem('userInfo'));
+      if (!localUserInfo) $location.path('/login');
+      userInfo = localUserInfo;
+
+      getSessionDetail();
+    })();
+  }]);
