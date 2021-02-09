@@ -15,14 +15,14 @@ angular
       getSessionById(params) {
         const req = {
           method: 'GET',
-          url: `http://localhost:3000/api/v1/session/${params.userId}`,
+          url: `http://localhost:3000/api/v1/session/${params.id}`,
           headers: {
             Authorization: `Bearer ${params.token}`
           }
         }
-        return $http(req, { params });
+        return $http(req);
       },
-      upsertSession(params) {
+      createSession(params) {
         const req = {
           method: 'POST',
           url: `http://localhost:3000/api/v1/session`,
@@ -33,5 +33,28 @@ angular
         }
         return $http(req, { params });
       },
+      upsertSession(params) {
+        const req = {
+          method: 'PUT',
+          url: `http://localhost:3000/api/v1/session/${params.id}`,
+          data: params,
+          headers: {
+            Authorization: `Bearer ${params.token}`
+          }
+        }
+        return $http(req, { params });
+      },
+
+      deleteSession(params) {
+        const req = {
+          method: 'DELETE',
+          url: `http://localhost:3000/api/v1/session/${params.id}`,
+          headers: {
+            Authorization: `Bearer ${params.token}`
+          }
+        }
+        return $http(req, { params });
+      },
+
     };
   }]);
