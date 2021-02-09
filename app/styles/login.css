@@ -1,41 +1,9 @@
-.browsehappy {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
-}
-
-body {
-  padding: 0;
-}
-
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-/* Custom page header */
-.header {
-  margin-bottom: 10px;
-}
-/* Make the masthead heading the same height as the navigation */
-.header h3 {
-  margin-top: 0;
-  margin-bottom: 0;
-  line-height: 40px;
-  padding-bottom: 19px;
-}
-
 .bdeo-login-container {
   margin-top: 15%;
 }
 
 .bdeo-login-container .login-form-container {
   margin: 0 auto;
-  width: 50%;
   border: solid 2px greenyellow;
   border-radius: 1em;
   background-color: #EFEFEF;
@@ -55,11 +23,10 @@ body {
 
 
 .bdeo-login-container .login-form-container div[class$="-container"] {
-  width: 50%;
-  margin: 3em auto;
   display: flex;
   justify-content: space-between;
-
+  margin: 3em 0;
+  width: 100%;
 }
 
 

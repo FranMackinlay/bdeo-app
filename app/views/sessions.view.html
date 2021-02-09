@@ -1,5 +1,16 @@
-<div class="bdeo-login-container">
-  <h1>
-    ACA VA LA LISTA DE SESIONES
-  </h1>
+<div class="bdeo-sessions-container">
+  <div class="session-list-header">
+    <h1>
+      Session list:
+    </h1>
+    <div class="add-session-btn">
+      <button ng-click="addSession($event)">Add Session</button>
+    </div>
+  </div>
+  <ul ng-if="$ctrl.sessions.length">
+    <li ng-repeat="item in $ctrl.sessions track by $index"></li>
+  </ul>
+  <div ng-if="!$ctrl.sessions.length">
+    There are no sessions yet!
+  </div>
 </div>
