@@ -20,17 +20,17 @@ angular.module('bdeoApp')
     s.onSubmit = async e => {
       e?.preventDefault();
 
-      if (vm.userTmp.email && vm.userTmp.password) {
+      if (vm.userTmp?.email && vm.userTmp?.password) {
         const { data } = await UsersSrv.login({ email: vm.userTmp.email, password: vm.userTmp.password });
 
         if (data.token && data.userid) {
-          localStorage.setItem('userInfo', data);
-          $location.path("/sessions");
+          localStorage.setItem('userInfo', JSON.stringify(data));
+          return $location.path("/sessions");
         } else {
-          alert('Something went wrong, please try again later! 🧖🏽s')
+          return alert('Something went wrong, please try again later! 🧖🏽s')
         }
       } else {
-        alert('Please enter valid email and password');
+        return alert('Please enter valid email and password');
       }
     }
 
