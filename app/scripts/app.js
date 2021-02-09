@@ -20,17 +20,17 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/login', {
-        templateUrl: 'views/login.html',
+        templateUrl: 'views/login.view.html',
         controller: 'LoginCtrl',
         controllerAs: 'vm'
       })
       .when('/sessions', {
-        templateUrl: 'views/sessions.html',
+        templateUrl: 'views/sessions.view.html',
         controller: 'SessionsCtrl',
         controllerAs: 'vm'
       })
       .when('/session/detail/:id', {
-        templateUrl: 'views/session-detail.html',
+        templateUrl: 'views/session-detail.view.html',
         controller: 'SessionDetailCtrl',
         controllerAs: 'vm'
       })

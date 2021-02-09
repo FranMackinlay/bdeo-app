@@ -1,0 +1,15 @@
+<div class="bdeo-login-container">
+  <form class="login-form-container">
+    <div class="email-container">
+      <label for="email">Email:</label>
+      <input type="email" name="email" id="email" ng-model="vm.userTmp.email">
+    </div>
+    <div class="password-container">
+      <label for="password">Password:</label>
+      <input type="password" name="password" id="password" ng-model="vm.userTmp.password">
+    </div>
+    <div class="login-form-btn">
+      <button ng-click="onSubmit($event)">Ingresar</button>
+    </div>
+  </form>
+</div>
