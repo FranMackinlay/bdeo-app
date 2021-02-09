@@ -2,11 +2,11 @@
   <form class="login-form-container">
     <div class="email-container">
       <label for="email">Email:</label>
-      <input type="email" name="email" id="email" ng-model="vm.userTmp.email">
+      <input type="email" name="email" id="email" ng-model="vm.userTmp.email" required>
     </div>
     <div class="password-container">
       <label for="password">Password:</label>
-      <input type="password" name="password" id="password" ng-model="vm.userTmp.password">
+      <input type="password" name="password" id="password" ng-model="vm.userTmp.password" required>
     </div>
     <div class="login-form-btn">
       <button ng-click="onSubmit($event)">Ingresar</button>
