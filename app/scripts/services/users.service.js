@@ -9,9 +9,14 @@ angular
         return $http.get(`http://localhost:3000/api/v1/user`, { params });
       },
       getUserById(params) {
-        return $http.get(`http://localhost:3000/api/v1/user/${params.userId}`, {
-          params
-        });
+        const req = {
+          method: 'GET',
+          url: `http://localhost:3000/api/v1/user/${params.userid}`,
+          headers: {
+            Authorization: `Bearer ${params.token}`
+          }
+        }
+        return $http(req, { params });
       },
     };
   }]);
