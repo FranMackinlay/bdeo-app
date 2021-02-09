@@ -13,9 +13,25 @@ angular
         return $http(req, { params });
       },
       getSessionById(params) {
-        return $http.get(`http://localhost:3000/api/v1/session/${params.userId}`, {
-          params
-        });
+        const req = {
+          method: 'GET',
+          url: `http://localhost:3000/api/v1/session/${params.userId}`,
+          headers: {
+            Authorization: `Bearer ${params.token}`
+          }
+        }
+        return $http(req, { params });
+      },
+      upsertSession(params) {
+        const req = {
+          method: 'POST',
+          url: `http://localhost:3000/api/v1/session`,
+          data: params,
+          headers: {
+            Authorization: `Bearer ${params.token}`
+          }
+        }
+        return $http(req);
       },
     };
   }]);
