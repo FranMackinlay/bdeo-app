@@ -22,10 +22,7 @@ angular.module('bdeoApp')
 
     const getSessionDetail = async () => {
       const { data: session } = await SessionsSrv.getSessionById({ id: $routeParams.id, token: userInfo.token });
-      s.session = session;
-      const date = new Date(s.session.createdAt);
-      s.session.createdAt = date.toString().substr(4, 11).replace(/\s/g, '/');
-      vm.newSession = s.session;
+      vm.newSession = s.session = session;
       $t(() => r.$digest());
     }
 
