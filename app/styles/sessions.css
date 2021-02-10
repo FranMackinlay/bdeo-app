@@ -2,8 +2,6 @@
 
 }
 
-
-
 .bdeo-sessions-container .session-list-header {
   display: flex;
   justify-content: space-between;
@@ -15,4 +13,28 @@
 .bdeo-sessions-container td:not(:last-child),
 .bdeo-sessions-container th {
   text-align: center;
+}
+
+
+.mobile .bdeo-sessions-container {
+  flex-wrap: wrap;
+}
+
+.mobile .bdeo-sessions-container .session-list-container {
+  order: 2;
+  margin-top: 2em;
+}
+
+.mobile .bdeo-sessions-container .add-session-inputs {
+  width: 90% !important;
+  padding: 0 !important;
+}
+
+
+.mobile .bdeo-sessions-container .table-actions-btns {
+  flex-wrap: wrap;
+}
+
+.mobile .bdeo-sessions-container .table-actions-btns button:last-child {
+  margin-top: 1em;
 }

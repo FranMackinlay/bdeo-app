@@ -6,7 +6,7 @@
   margin: 0 auto;
   border: solid 2px greenyellow;
   border-radius: 1em;
-  background-color: #EFEFEF;
+  background-color: transparent;
 }
 
 .bdeo-login-container .login-form-container .login-form-btn {
