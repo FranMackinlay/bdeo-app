@@ -37,4 +37,20 @@ angular
       .otherwise({
         redirectTo: '/login'
       });
-  });
+  })
+  .run(['$rootScope', $rootScope => {
+    const $html = document.getElementsByTagName('html')[0];
+    $rootScope.IS_MOBILE = window.innerWidth && window.innerWidth < 480 || $html.classList.contains('mobile');
+    if ($rootScope.IS_MOBILE) {
+      $html.classList.add('mobile');
+    } else {
+      $html.classList.remove('mobile');
+    }
+
+    $rootScope.IS_EMBED = window !== window.parent || location.href.includes('embed');
+    if ($rootScope.IS_EMBED) {
+      $html.classList.add('embed');
+    } else {
+      $html.classList.remove('embed');
+    }
+  }]);
