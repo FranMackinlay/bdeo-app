@@ -26,7 +26,8 @@ angular.module('bdeoApp')
 
         if (data.token && data.userid) {
           localStorage.setItem('userInfo', JSON.stringify(data));
-          return $location.path("/sessions");
+          r.$emit('USER_LOGIN:LOGIN');
+          return window.location.href = '/#!/sessions' //$location.path("/sessions");
         } else {
           return alert('Something went wrong, please try again later! 🧖🏽s')
         }
