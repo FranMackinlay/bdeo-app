@@ -3,6 +3,9 @@
   --overlay-color: rgb(19 59 111 / 50%);
   --menu-speed: 0.75s;
 }
+div, form {
+  border-radius: 1em;
+}
 
 html,
 nav,
