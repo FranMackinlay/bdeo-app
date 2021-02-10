@@ -1,0 +1,22 @@
+<div class="bdeo-login-container">
+  <form class="login-form-container col-md-4 offset-2 px-3">
+    <div class="email-container">
+      <label for="username">Username:</label>
+      <input type="text" name="username" id="username" ng-model="vm.userTmp.username" placeholder="UserName" required>
+    </div>
+    <div class="email-container">
+      <label for="email">Email:</label>
+      <input type="email" name="email" id="email" ng-model="vm.userTmp.email" placeholder="email@example.com" required>
+    </div>
+    <div class="password-container">
+      <label for="password">Password:</label>
+      <input type="password" name="password" id="password" ng-model="vm.userTmp.password" placeholder="Password" required>
+    </div>
+    <div class="create-account-container">
+      <a class="w-50 m-auto my-0" href="/#!/login">Already have an account?</a>
+    </div>
+    <div class="login-form-btn">
+      <button class="btn btn-success" ng-click="onSubmit($event)">Register</button>
+    </div>
+  </form>
+</div>
