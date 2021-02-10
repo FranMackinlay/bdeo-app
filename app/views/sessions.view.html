@@ -1,5 +1,5 @@
 <div class="bdeo-sessions-container d-flex mt-5">
-  <div class="col-md-8 px-3">
+  <div class="col-md-8 px-3 session-list-container">
     <div class="session-list-header">
       <h1>
         Session list:
@@ -18,7 +18,7 @@
         <tr ng-repeat="item in sessions track by $index" class="">
           <td ng-bind="item.owner.username"></td>
           <td ng-bind="item.maxNumOfSessions"></td>
-          <td class="d-flex align-items-center justify-content-around">
+          <td class="d-flex align-items-center justify-content-around table-actions-btns">
             <button type="button" class="btn btn-warning" ng-click="goToSessionDetail($event, item)">Details</button>
             <button type="button" class="btn btn-danger" ng-click="deleteSession($event, item)">Delete</button>
           </td>
@@ -35,11 +35,11 @@
         <button type="submit" class="btn btn-success">Add Session</button>
       </div>
       <div class="add-session-form p-3">
-        <div class="d-flex align-items-center justify-content-between my-4 w-75 m-auto">
+        <div class="d-flex align-items-center justify-content-between my-4 w-75 m-auto add-session-inputs">
           <label for="username">Username:</label>
           <input class="form-control w-50" type="text" name="username" id="username" ng-value="user.username" ng-model="vm.newSession.name" disabled>
         </div>
-        <div class="d-flex align-items-center justify-content-between w-75 m-auto">
+        <div class="d-flex align-items-center justify-content-between w-75 m-auto add-session-inputs">
           <label for="maxNumOfSessions">Max Sessions:</label>
           <input class="form-control w-50" type="number" name="maxNumOfSessions" id="maxNumOfSessions" value="newSession.maxNumOfSessions" ng-model="newSession.maxNumOfSessions">
         </div>
