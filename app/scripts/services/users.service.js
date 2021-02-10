@@ -5,6 +5,9 @@ angular
       login(params) {
         return $http.post(`http://localhost:3000/api/v1/user/login`, params);
       },
+      createUser(params) {
+        return $http.post(`http://localhost:3000/api/v1/user`, params);
+      },
       getUsers(params) {
         return $http.get(`http://localhost:3000/api/v1/user`, { params });
       },
