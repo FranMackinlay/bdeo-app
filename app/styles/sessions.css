@@ -2,6 +2,10 @@
 
 }
 
+.bdeo-sessions-container .add-session-container {
+  margin-top: 26%;
+}
+
 .bdeo-sessions-container .session-list-header {
   display: flex;
   justify-content: space-between;
@@ -37,4 +41,8 @@
 
 .mobile .bdeo-sessions-container .table-actions-btns button:last-child {
   margin-top: 1em;
+}
+
+.mobile .bdeo-sessions-container .add-session-container {
+  margin-top: 0;
 }
