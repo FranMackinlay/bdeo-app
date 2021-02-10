@@ -11,6 +11,7 @@
         <tr>
           <th scope="col">Owner</th>
           <th scope="col">Max Sessions</th>
+          <th scope="col">Since</th>
           <th scope="col">Actions</th>
         </tr>
       </thead>
@@ -18,9 +19,10 @@
         <tr ng-repeat="item in sessions track by $index" class="">
           <td ng-bind="item.owner.username"></td>
           <td ng-bind="item.maxNumOfSessions"></td>
+          <td ng-bind="item.createdAt"></td>
           <td class="d-flex align-items-center justify-content-around table-actions-btns">
-            <button type="button" class="btn btn-warning" ng-click="goToSessionDetail($event, item)">Details</button>
-            <button type="button" class="btn btn-danger" ng-click="deleteSession($event, item)">Delete</button>
+            <button type="button" class="btn btn-warning" ng-click="goToSessionDetail($event, item)">📝</button>
+            <button type="button" class="btn btn-danger" ng-click="deleteSession($event, item)">🗑</button>
           </td>
         </tr>
       </tbody>
