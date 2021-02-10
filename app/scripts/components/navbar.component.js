@@ -1,17 +1,30 @@
 angular.module('bdeoApp')
   .component('bdeoNavbar', {
     templateUrl: 'views/navbar.view.html',
-    controller: ['$scope', '$rootScope', 'UsersSrv', function (s, r, UsersSrv) {
+    controller: ['$scope', '$rootScope', 'UsersSrv', '$location', function (s, r, UsersSrv, $location) {
 
       (async () => {
+        let userInfo;
         const localUserInfo = JSON.parse(localStorage.getItem('userInfo'));
 
-        const { data } = await UsersSrv.getUserById(localUserInfo);
+        if (!localUserInfo) {
+          userInfo = 'Login';
+        } else {
+          const { data } = await UsersSrv.getUserById(localUserInfo);
+          userInfo = data;
+        }
 
-        s.userInfo = data ? data.username : 'Login';
+        s.userInfo = userInfo;
 
         s.IS_MOBILE = s.$parent.IS_MOBILE;
+
       })()
+
+      s.logout = e => {
+        e?.preventDefault();
+        localStorage.removeItem('userInfo');
+        $location.path("/login");
+      }
 
 
     }]

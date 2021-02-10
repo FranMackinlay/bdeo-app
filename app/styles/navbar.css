@@ -1,3 +1,11 @@
+.navbar-nav {
+  width: 30%;
+}
+
+.navbar-nav .nav-ling {
+  flex-basis: 18%;
+}
+
 .menu-wrap {
   position: fixed;
   top: 0;
@@ -144,4 +152,11 @@
   width: 100vw;
   height: 50px;
   display: block;
+}
+
+.mobile .logo-container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(90%, -40%);
 }
