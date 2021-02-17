@@ -31,7 +31,7 @@ angular.module('bdeoApp')
       try {
         const { data } = await SessionsSrv.upsertSession({ id: s.session.id, token: userInfo.token, session: vm.newSession })
         if (data.success) {
-          alert('Session created successfully!');
+          alert('Session edited successfully!');
           s.goBack(null);
         } else {
           alert('Oh no! Something went wrong, try again later!');
