@@ -18,15 +18,18 @@ angular.module('bdeoApp')
       e?.preventDefault();
 
       if (vm.userTmp?.email && vm.userTmp?.password) {
-        const { data } = await UsersSrv.createUser({ email: vm.userTmp.email, password: vm.userTmp.password, username: vm.userTmp.username });
+        try {
+          const { data } = await UsersSrv.createUser({ email: vm.userTmp.email, password: vm.userTmp.password, username: vm.userTmp.username });
 
-        if (data.success) {
+          if (data.success) {
+            if (window.confirm('Account created!')) return window.location.href = '/#!/login' //$location.path("/login");
+          }
 
-          if (window.confirm('Account created!')) return window.location.href = '/#!/login' //$location.path("/login");
+          return alert('Something went wrong, please try again later! 🧖🏽s')
+
+        } catch (error) {
+          console.log(error.message)
         }
-
-        return alert('Something went wrong, please try again later! 🧖🏽s')
-
       } else {
         return alert('Please enter valid email and password');
       }

@@ -16,8 +16,12 @@ angular.module('bdeoApp')
         if (!localUserInfo) {
           userInfo = 'Login';
         } else {
-          const { data } = await UsersSrv.getUserById(localUserInfo);
-          userInfo = data.username;
+          try {
+            const { data } = await UsersSrv.getUserById(localUserInfo);
+            userInfo = data.username;
+          } catch (error) {
+            console.log(error.message);
+          }
         }
         s.userInfo = userInfo;
       }

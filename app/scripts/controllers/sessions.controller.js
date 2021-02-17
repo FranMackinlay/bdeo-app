@@ -16,25 +16,37 @@ angular.module('bdeoApp')
     // ============= METHODS ============= //
 
     const getUser = async () => {
-      const { data: user } = await UsersSrv.getUserById(userInfo)
-      s.user = user;
+      try {
+        const { data: user } = await UsersSrv.getUserById(userInfo)
+        s.user = user;
+      } catch (error) {
+        console.log(error.message);
+      }
     }
 
     const getSessions = async () => {
-      const { data: sessions } = await SessionsSrv.getSessions({ user: userInfo.userid, token: userInfo.token });
-      s.sessions = sessions;
-      $t(() => r.$digest());
+      try {
+        const { data: sessions } = await SessionsSrv.getSessions({ user: userInfo.userid, token: userInfo.token });
+        s.sessions = sessions;
+        $t(() => r.$digest());
+      } catch (error) {
+        console.log(error.message);
+      }
     }
 
     s.addSession = async e => {
       e?.preventDefault();
       if (!s.newSession?.maxNumOfSessions) return alert('Please enter a valid Max Sessions number!');
 
-      const { data } = await SessionsSrv.createSession({ userid: s.user.id, token: userInfo.token, maxNumOfSessions: parseInt(s.newSession.maxNumOfSessions) })
+      try {
+        const { data } = await SessionsSrv.createSession({ userid: s.user.id, token: userInfo.token, maxNumOfSessions: parseInt(s.newSession.maxNumOfSessions) })
 
-      if (data.id) alert('Session created successfully!');
-      s.newSession.maxNumOfSessions = null;
-      getSessions();
+        if (data.id) alert('Session created successfully!');
+        s.newSession.maxNumOfSessions = null;
+        getSessions();
+      } catch (error) {
+        console.log(error.message);
+      }
     };
 
     s.goToSessionDetail = (e, session) => {
@@ -44,11 +56,14 @@ angular.module('bdeoApp')
 
     s.deleteSession = async (e, session) => {
       e?.preventDefault();
-
-      const { data } = await SessionsSrv.deleteSession({ id: session.id, token: userInfo.token });
-      s.sessions = data;
-      if (data) alert('Session deleted!');
-      $t(() => r.$digest());
+      try {
+        const { data } = await SessionsSrv.deleteSession({ id: session.id, token: userInfo.token });
+        s.sessions = data;
+        if (data) alert('Session deleted!');
+        $t(() => r.$digest());
+      } catch (error) {
+        console.log(error.message);
+      }
     }
 
     // ============= RUNTIME ============= //

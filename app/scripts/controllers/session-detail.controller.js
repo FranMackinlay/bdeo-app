@@ -28,22 +28,29 @@ angular.module('bdeoApp')
 
     s.upsertSession = async e => {
       e?.preventDefault();
+      try {
+        const { data } = await SessionsSrv.upsertSession({ id: s.session.id, token: userInfo.token, session: vm.newSession })
+        if (data.success) {
+          alert('Session created successfully!');
+          s.goBack(null);
+        } else {
+          alert('Oh no! Something went wrong, try again later!');
+        }
 
-      const { data } = await SessionsSrv.upsertSession({ id: s.session.id, token: userInfo.token, session: vm.newSession })
-      if (data.success) {
-        alert('Session created successfully!');
-        s.goBack(null);
-      } else {
-        alert('Oh no! Something went wrong, try again later!');
+      } catch (error) {
+        console.log(error.message);
       }
     };
 
     s.deleteSession = async (e) => {
       e?.preventDefault();
-
-      const { data } = await SessionsSrv.deleteSession({ id: s.session.id, token: userInfo.token });
-      if (data) alert('Session deleted!');
-      s.goBack(null);
+      try {
+        const { data } = await SessionsSrv.deleteSession({ id: s.session.id, token: userInfo.token });
+        if (data) alert('Session deleted!');
+        s.goBack(null);
+      } catch (error) {
+        console.log(error.message);
+      }
     }
 
     // ============= RUNTIME ============= //
